@@ -33,18 +33,20 @@ def health_check():
     return {'status': 200}
 
 @app.route('/time-on-screen', methods=['POST'])
-def create_user():
+def create_entry():
     # https://stackoverflow.com/a/67461897
     data = request.get_json()
     screen = data['screen']
     timeTaken = int(data['timeTaken'])
-    
     query = '''
         INSERT INTO time_taken_per_screen (screen, timeTaken)
-        VALUES (%s, %d)
+        VALUES (%s, 
     '''
+    query = query + str(timeTaken) + ')'
 
-    cursor.execute(query, [screen, timeTaken])
+    print("Running", query)
+
+    cursor.execute(query, [screen])
     
     return {'status': 201}
 
