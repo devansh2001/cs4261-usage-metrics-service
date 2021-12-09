@@ -19,7 +19,7 @@ conn.autocommit = True
 cursor = conn.cursor()
 try:
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS time_taken_per_screen (
+    CREATE TABLE IF NOT EXISTS time_taken_per_screen_2 (
         screen varchar(256),
         timeTaken integer
     );
@@ -39,7 +39,7 @@ def create_entry():
     screen = data['screen']
     timeTaken = int(data['timeTaken'])
     query = '''
-        INSERT INTO time_taken_per_screen (screen, timeTaken)
+        INSERT INTO time_taken_per_screen_2 (screen, timeTaken)
         VALUES (%s, 
     '''
     query = query + str(timeTaken) + ')'
